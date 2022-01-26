@@ -69,7 +69,9 @@ typedef struct
     ISO8583_ElementFlag Field[ ISO8583_MAXFIELD ];
 } ISO8583_Rec;
 
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 /* -----------------------------------------------------------------------------
  * FUNCTION NAME:   ISO8583Engine_InitFieldFormat
  * DESCRIPTION:     Set ISO8583 field type and format, should be called
@@ -179,5 +181,9 @@ int ISO8583Utils_BCD2LEN( unsigned char * BcdBuf, int * Len, int BcdLen );
  * RETURN:          None
  ---------------------------------------------------------------------------- */
 int ISO8583Utils_LEN2BCD( int Len, byte * BcdBuf, int BcdLen);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

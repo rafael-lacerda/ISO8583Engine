@@ -6,8 +6,9 @@
 * REVISION:                                                                *
 ****************************************************************************/
 
-#include <conio.h>
+//#include <conio.h>
 #include <string.h>
+#include <stdbool.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,7 +19,7 @@
  * Internal variables / constants
  *-----------------------------------------------------------------------------*/
 static unsigned char BitMapMode = ISO8583_BITMAP64;
-static unsigned char FldFormatSetFlag = FALSE;
+static bool FldFormatSetFlag = false;
 
 //ISO8583 field format definitions, should initiated by ISO8583Engine_InitFieldFormat()
 static ISO8583_FieldFormat ISO8583FldFormat[ ISO8583_MAXFIELD ];
@@ -33,7 +34,7 @@ static ISO8583_FieldFormat ISO8583FldFormat[ ISO8583_MAXFIELD ];
  ---------------------------------------------------------------------------- */
 int ISO8583Engine_InitFieldFormat( ISO8583_BitMode bBitMode, ISO8583_FieldFormat *pIso8583FieldFormat )
 {
-    FldFormatSetFlag = TRUE;
+    FldFormatSetFlag = true;
     BitMapMode = bBitMode;
 
     if( ISO8583_MAXFIELD == 64 )
@@ -103,7 +104,7 @@ int ISO8583Engine_SetField( ISO8583_Rec * pIso8583Data, int iFieldNo, unsigned c
     byte cTemp[ 1000 ];
     byte * pRpt;
 
-    if( FldFormatSetFlag != TRUE )
+    if( FldFormatSetFlag != true )
         return ISOENGINE_NOT_SET_FIELD_FMT;
 
     iFieldNum = iFieldNo;
@@ -204,7 +205,7 @@ int ISO8583Engine_GetField( ISO8583_Rec * pIso8583Data, int iFieldNo, unsigned c
     int iFieldNum;
     byte * pRpt;
 
-    if( FldFormatSetFlag != TRUE )
+    if( FldFormatSetFlag != true )
         return ISOENGINE_NOT_SET_FIELD_FMT;
 
     iFieldNum = iFieldNo;
